@@ -108,9 +108,34 @@ final class import_form_test extends advanced_testcase {
         }
         foreach (['needsource', 'toomany', 'confirmimportrequired', 'importreport', 'importtimecreated',
                   'importpendingheading', 'importdeleteconfirm', 'emaillist', 'emaillistplaceholder',
-                  'importattachment', 'confirmimport'] as $key) {
+                  'importattachment', 'confirmimport', 'emaillist_help', 'importattachment_help'] as $key) {
             $string = get_string($key, 'enrol_preenrol');
             $this->assertNotSame("[[{$key}]]", $string, "lang key {$key} must exist");
         }
+    }
+
+    public function test_import_form_has_field_help_buttons(): void {
+        $this->resetAfterTest();
+
+        ob_start();
+        $oldlevel = error_reporting();
+        error_reporting($oldlevel & ~E_DEPRECATED);
+        $form = new import_form(
+            new moodle_url('/enrol/preenrol/import.php', ['enrolid' => 1]));
+        error_reporting($oldlevel);
+        ob_end_clean();
+
+        // The quickform is behind the protected moodleform::$_form property.
+        $prop = new \ReflectionProperty(\moodleform::class, '_form');
+        $prop->setAccessible(true);
+        $qform = $prop->getValue($form);
+
+        $help = (string)$qform->getElement('emaillist')->getHelpButton();
+        $this->assertNotEmpty($help, 'help button html missing on emaillist');
+        $this->assertStringContainsString((string)import_form::MAX_ROWS, $help,
+            'the row limit must be substituted into the emaillist help text');
+
+        $help = (string)$qform->getElement('attachment')->getHelpButton();
+        $this->assertNotEmpty($help, 'help button html missing on attachment');
     }
 }
