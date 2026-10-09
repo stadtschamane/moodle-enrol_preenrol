@@ -68,18 +68,15 @@ class import_form extends moodleform {
         $mform->setType('emaillist', PARAM_TEXT);
 
         $mform->addElement('filepicker', 'attachment', get_string('importattachment', 'enrol_preenrol'), null, [
-            'accepted_types' => ['.csv', 'text/csv', 'text/plain'],
+            'accepted_types' => ['.csv', '.txt'],
         ]);
         $mform->setType('attachment', PARAM_INT);
-
-        $mform->addElement('advcheckbox', 'confirmimport', get_string('confirmimport', 'enrol_preenrol'));
-        $mform->setType('confirmimport', PARAM_BOOL);
 
         $this->add_action_buttons(true, get_string('import', 'enrol_preenrol'));
     }
 
     /**
-     * Extra validation: one source minimum, explicit confirmation, row limit.
+     * Extra validation: one source minimum and row limit.
      *
      * @param array $data array of ("fieldname" => value) of submitted data
      * @param array $files array of uploaded files "element_name" => tmp_file_path
@@ -87,10 +84,6 @@ class import_form extends moodleform {
      */
     public function validation($data, $files) {
         $errors = parent::validation($data, $files);
-
-        if (empty($data['confirmimport'])) {
-            $errors['confirmimport'] = get_string('confirmimportrequired', 'enrol_preenrol');
-        }
 
         $text = trim((string)($data['emaillist'] ?? ''));
         $csv = trim($this->get_attachment_content());

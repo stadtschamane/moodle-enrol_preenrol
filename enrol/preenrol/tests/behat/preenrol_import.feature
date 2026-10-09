@@ -42,7 +42,6 @@ Feature: Pre-enrolment import and auto-enrol on first signup
     ben@example.org
     jane@example.org
     """
-    And I set the field "I confirm that the addresses listed above should be imported" to "1"
     And I press "Import pre-enrolments"
     Then I should see "Import report"
     And I should see "ben@example.org"

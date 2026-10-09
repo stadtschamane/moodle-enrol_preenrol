@@ -64,26 +64,20 @@ final class import_form_test extends advanced_testcase {
         $this->assertSame(['anna@example.org', 'ben@example.org', 'carol@example.org'], $tokens);
     }
 
-    public function test_validation_needsource_and_confirm(): void {
+    public function test_validation_needsource(): void {
         $this->resetAfterTest();
 
         $form = new import_form(
             new moodle_url('/enrol/preenrol/import.php', ['enrolid' => 1]));
 
-        // Case 1: no source at all -> needsource + confirmimportrequired.
-        $errors = $form->validation(['emaillist' => '', 'confirmimport' => 0], []);
+        // Case 1: no source at all -> needsource.
+        $errors = $form->validation(['emaillist' => ''], []);
         $this->assertArrayHasKey('emaillist', $errors);
         $this->assertSame(get_string('needsource', 'enrol_preenrol'), $errors['emaillist']);
-        $this->assertArrayHasKey('confirmimport', $errors);
 
-        // Case 2: confirmed source with 3 addresses -> no errors.
-        $errors = $form->validation(['emaillist' => "anna@example.org\nben@example.org\ncarol@example.org", 'confirmimport' => 1], []);
+        // A source with 3 addresses -> no errors.
+        $errors = $form->validation(['emaillist' => "anna@example.org\nben@example.org\ncarol@example.org"], []);
         $this->assertSame([], $errors);
-
-        // Case 3: source but no confirm -> confirmimport error only.
-        $errors = $form->validation(['emaillist' => 'anna@example.org', 'confirmimport' => 0], []);
-        $this->assertArrayHasKey('confirmimport', $errors);
-        $this->assertArrayNotHasKey('emaillist', $errors);
     }
 
     public function test_validation_toomany_limit(): void {
@@ -97,13 +91,13 @@ final class import_form_test extends advanced_testcase {
         for ($i = 0; $i < import_form::MAX_ROWS + 1; $i++) {
             $tokens[] = "user{$i}@example.org";
         }
-        $errors = $form->validation(['emaillist' => implode("\n", $tokens), 'confirmimport' => 1], []);
+        $errors = $form->validation(['emaillist' => implode("\n", $tokens)], []);
         $this->assertArrayHasKey('emaillist', $errors);
         $this->assertSame(get_string('toomany', 'enrol_preenrol', import_form::MAX_ROWS), $errors['emaillist']);
 
         // Exactly 2000 -> OK.
         array_pop($tokens);
-        $errors = $form->validation(['emaillist' => implode("\n", $tokens), 'confirmimport' => 1], []);
+        $errors = $form->validation(['emaillist' => implode("\n", $tokens)], []);
         $this->assertSame([], $errors);
     }
 

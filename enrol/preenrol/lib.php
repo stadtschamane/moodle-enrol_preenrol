@@ -90,6 +90,7 @@ class enrol_preenrol_plugin extends enrol_plugin {
     public function edit_instance_form($instance, MoodleQuickForm $mform, $coursecontext) {
         $options = $this->get_status_options();
         $mform->addElement('select', 'status', get_string('status', 'enrol_preenrol'), $options);
+        $mform->addHelpButton('status', 'status', 'enrol_preenrol');
 
         $mform->addElement('text', 'name', get_string('custominstancename', 'enrol'));
         $mform->setType('name', PARAM_TEXT);
@@ -99,18 +100,22 @@ class enrol_preenrol_plugin extends enrol_plugin {
         $roles = get_assignable_roles($coursecontext, ROLENAME_BOTH);
         $mform->addElement('select', 'roleid', get_string('assignrole', 'enrol_preenrol'), $roles);
         $mform->setDefault('roleid', $this->get_config('roleid'));
+        $mform->addHelpButton('roleid', 'assignrole', 'enrol_preenrol');
 
         $options = array('optional' => true, 'defaultunit' => 86400);
         $mform->addElement('duration', 'enrolperiod', get_string('enrolperiod', 'enrol_preenrol'), $options);
         $mform->setDefault('enrolperiod', 0);
+        $mform->addHelpButton('enrolperiod', 'enrolperiod', 'enrol_preenrol');
 
         $options = array('optional' => true);
         $mform->addElement('date_time_selector', 'enrolstartdate', get_string('enrolstartdate', 'enrol_preenrol'), $options);
         $mform->setDefault('enrolstartdate', 0);
+        $mform->addHelpButton('enrolstartdate', 'enrolstartdate', 'enrol_preenrol');
 
         $options = array('optional' => true);
         $mform->addElement('date_time_selector', 'enrolenddate', get_string('enrolenddate', 'enrol_preenrol'), $options);
         $mform->setDefault('enrolenddate', 0);
+        $mform->addHelpButton('enrolenddate', 'enrolenddate', 'enrol_preenrol');
     }
 
     /**

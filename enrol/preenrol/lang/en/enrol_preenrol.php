@@ -2,14 +2,18 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['assignrole'] = 'Assign role';
+$string['assignrole_help'] = 'The role assigned to imported people when they are enrolled. The default value is set in the plugin settings.';
 $string['confirmimport'] = 'I confirm that the addresses listed above should be imported';
 $string['confirmimportrequired'] = 'You must confirm the import before it can be started';
 $string['custominstancename'] = 'Custom instance name';
 $string['emaillist'] = 'E-mail addresses';
 $string['emaillistplaceholder'] = 'anna@example.org, ben@example.org';
 $string['enrolenddate'] = 'End date';
+$string['enrolenddate_help'] = 'The date the enrolment ends. If disabled, the enrolment does not end automatically.';
 $string['enrolperiod'] = 'Enrolment duration';
+$string['enrolperiod_help'] = 'Length of time a person remains enrolled, counted from the moment of enrolment. 0 (disabled) means the enrolment does not end automatically.';
 $string['enrolstartdate'] = 'Start date';
+$string['enrolstartdate_help'] = 'The date the enrolment becomes valid. If disabled, the enrolment starts immediately.';
 $string['import'] = 'Import pre-enrolments';
 $string['importalreadyenrolled'] = 'Already enrolled';
 $string['importattachment'] = 'CSV file (optional)';
@@ -17,6 +21,7 @@ $string['importdeleteconfirm'] = 'Delete the pending pre-enrolment for {$a}?';
 $string['importduplicate'] = 'Duplicate in import';
 $string['importenrolled'] = 'Enrolled';
 $string['importinvalid'] = 'Invalid e-mail address';
+$string['importpageintro'] = 'Import a list of e-mail addresses to pre-enrol people in this course. Enter the addresses one per line or separated by commas, semicolons or tabs (up to {$a} addresses), or upload a .csv or .txt file in the same format. People whose accounts already exist are enrolled immediately. Addresses without a matching account are stored as pending pre-enrolments and those people are enrolled automatically as soon as an account with that e-mail address is created.';
 $string['importpending'] = 'Pending pre-enrolment';
 $string['importpendingheading'] = 'Pending pre-enrolments';
 $string['importreport'] = 'Import report';
@@ -43,4 +48,5 @@ $string['privacy:metadata:enrol_preenrol:pending:roleid'] = 'The role assigned t
 $string['privacy:metadata:enrol_preenrol:pending:summary'] = 'It stores the e-mail addresses of pending people together with the course, enrolment method, role and time; people are enrolled as soon as an account with a matching e-mail address is created';
 $string['privacy:metadata:enrol_preenrol:pending:timecreated'] = 'The time the e-mail address was added as a pending pre-enrolment';
 $string['status'] = 'Active';
+$string['status_help'] = 'Whether people can be enrolled through this method. While the method is inactive, pending e-mail addresses are not converted into enrolments.';
 $string['toomany'] = 'The import contains more than {$a} addresses';

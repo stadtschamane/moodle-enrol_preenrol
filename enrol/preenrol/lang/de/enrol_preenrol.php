@@ -2,14 +2,18 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['assignrole'] = 'Rolle zuweisen';
+$string['assignrole_help'] = 'Die Rolle, die importierten Personen bei der Einschreibung zugewiesen wird. Der Standardwert wird in den Plugineinstellungen festgelegt.';
 $string['confirmimport'] = 'Ich bestätige, dass die oben gelisteten Adressen importiert werden sollen';
 $string['confirmimportrequired'] = 'Sie müssen den Import bestätigen, bevor er gestartet werden kann';
 $string['custominstancename'] = 'Eigener Instanzname';
 $string['emaillist'] = 'E-Mail-Adressen';
 $string['emaillistplaceholder'] = 'anna@example.org, ben@example.org';
 $string['enrolenddate'] = 'Enddatum';
+$string['enrolenddate_help'] = 'Datum, an dem die Einschreibung endet. Wenn deaktiviert, endet die Einschreibung nicht automatisch.';
 $string['enrolperiod'] = 'Einschreibungsdauer';
+$string['enrolperiod_help'] = 'Zeitraum, für den die Person eingeschrieben bleibt, beginnend zum Zeitpunkt der Einschreibung. 0 (deaktiviert) bedeutet, dass die Einschreibung nicht automatisch endet.';
 $string['enrolstartdate'] = 'Startdatum';
+$string['enrolstartdate_help'] = 'Datum, ab dem die Einschreibung gültig ist. Wenn deaktiviert, beginnt die Einschreibung sofort.';
 $string['import'] = 'Vormerkungen importieren';
 $string['importalreadyenrolled'] = 'Bereits eingeschrieben';
 $string['importattachment'] = 'CSV-Datei (optional)';
@@ -17,6 +21,7 @@ $string['importdeleteconfirm'] = 'Die Vormerkung für {$a} löschen?';
 $string['importduplicate'] = 'Duplikat im Import';
 $string['importenrolled'] = 'Eingeschrieben';
 $string['importinvalid'] = 'Ungültige E-Mail-Adresse';
+$string['importpageintro'] = 'Importieren Sie eine Liste von E-Mail-Adressen, um Personen in diesem Kurs vorab einzuschreiben. Geben Sie die Adressen zeilenweise oder durch Kommas, Semikolons oder Tabs getrennt ein (bis zu {$a} Adressen) oder laden Sie eine .csv- oder .txt-Datei im selben Format hoch. Personen mit bereits vorhandenem Konto werden sofort eingeschrieben. Adressen ohne passendes Konto werden als Vormerkung gespeichert; die Personen werden automatisch eingeschrieben, sobald ein Konto mit dieser E-Mail-Adresse erstellt wird.';
 $string['importpending'] = 'Vorgemerkte Einschreibung';
 $string['importpendingheading'] = 'Vorgemerkte Einschreibungen';
 $string['importreport'] = 'Importbericht';
@@ -43,4 +48,5 @@ $string['privacy:metadata:enrol_preenrol:pending:roleid'] = 'Die Rolle, die der 
 $string['privacy:metadata:enrol_preenrol:pending:summary'] = 'Sie speichert die E-Mail-Adressen vorgemerkter Personen zusammen mit Kurs, Einschreibungsmethode, Rolle und Zeitpunkt; die Personen werden eingeschrieben, sobald ein Konto mit passender E-Mail-Adresse erstellt wird';
 $string['privacy:metadata:enrol_preenrol:pending:timecreated'] = 'Der Zeitpunkt, zu dem die E-Mail-Adresse als Vormerkung hinzugefügt wurde';
 $string['status'] = 'Aktiv';
+$string['status_help'] = 'Ob Personen über diese Methode eingeschrieben werden können. Solange die Methode inaktiv ist, werden vorgemerkte E-Mail-Adressen nicht in Einschreibungen umgewandelt.';
 $string['toomany'] = 'Der Import enthält mehr als {$a} Adressen';
