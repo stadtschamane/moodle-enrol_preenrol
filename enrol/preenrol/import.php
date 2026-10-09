@@ -124,8 +124,6 @@ if ($report !== null) {
     }
 }
 
-echo $OUTPUT->notification(get_string('importpageintro', 'enrol_preenrol', \enrol_preenrol\import_form::MAX_ROWS), \core\output\notification::NOTIFY_INFO);
-
 $mform->display();
 
 echo $OUTPUT->heading(get_string('importpendingheading', 'enrol_preenrol'));

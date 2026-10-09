@@ -66,11 +66,15 @@ class import_form extends moodleform {
             'cols' => 60,
         ]);
         $mform->setType('emaillist', PARAM_TEXT);
+        $mform->addHelpButton('emaillist', 'emaillist', 'enrol_preenrol', '', true,
+            import_form::MAX_ROWS);
 
         $mform->addElement('filepicker', 'attachment', get_string('importattachment', 'enrol_preenrol'), null, [
             'accepted_types' => ['.csv', '.txt'],
         ]);
         $mform->setType('attachment', PARAM_INT);
+        $mform->addHelpButton('attachment', 'importattachment', 'enrol_preenrol', '', true,
+            import_form::MAX_ROWS);
 
         $this->add_action_buttons(true, get_string('import', 'enrol_preenrol'));
     }
