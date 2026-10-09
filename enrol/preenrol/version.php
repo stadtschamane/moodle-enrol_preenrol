@@ -22,7 +22,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2026100900;
+$plugin->version = 2026100901;
 $plugin->requires = 2022112800; // Moodle 4.1
 $plugin->supported = [401, 405];
 $plugin->component = 'enrol_preenrol';
