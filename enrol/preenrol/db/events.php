@@ -17,6 +17,11 @@
 /**
  * Pre-enrolment plugin event handler definition.
  *
+ * The observer must be an internal handler: it enrols the user via
+ * enrol_plugin::enrol_user() which writes Moodle's own enrolment tables,
+ * so the enrolment must be atomic with the account creation transaction
+ * (and it stays dispatchable under PHPUnit's rollback-based tests).
+ *
  * @package    enrol_preenrol
  * @category   event
  * @copyright  2026 Stadtschamane <https://github.com/stadtschamane>
@@ -29,6 +34,6 @@ $observers = [
     [
         'eventname' => '\core\event\user_created',
         'callback' => '\enrol_preenrol\observer::user_created',
-        'internal' => false,
+        'internal' => true,
     ],
 ];
