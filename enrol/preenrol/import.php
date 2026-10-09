@@ -41,9 +41,14 @@ $PAGE->set_url('/enrol/preenrol/import.php', ['enrolid' => $enrolid]);
 $PAGE->set_pagelayout('admin');
 $PAGE->set_title(get_string('import', 'enrol_preenrol'));
 $PAGE->set_heading($course->fullname);
-$PAGE->navbar->add(get_string('enrolmentinstances', 'enrol'),
+// Mark the course's enrolment methods page as the active admin node, so the
+// breadcrumb is rebuilt from the course chain (Category > Course) instead of
+// being replaced by manual nodes only. Same pattern as core enrol pages
+// (enrol/editinstance.php, enrol/manual/manage.php).
+navigation_node::override_active_url(
     new moodle_url('/enrol/instances.php', ['id' => $course->id]));
-$PAGE->navbar->add(get_string('import', 'enrol_preenrol'));
+$PAGE->navbar->add(get_string('import', 'enrol_preenrol'),
+    new moodle_url('/enrol/preenrol/import.php', ['enrolid' => $enrolid]));
 
 // Post/Redirect/Get for deleting a single pending row. The sesskey is part of
 // the Delete link rendered below.
@@ -60,7 +65,10 @@ $mform = new \enrol_preenrol\import_form($formaction, ['enrolid' => $enrolid]);
 
 $report = null;
 if ($mform->is_cancelled()) {
-    redirect($PAGE->url);
+    // Core enrol-page pattern (see enrol/editinstance.php): cancellation
+    // returns to the course enrolment methods list instead of re-rendering
+    // this page (which made the button feel dead).
+    redirect(new moodle_url('/enrol/instances.php', ['id' => $course->id]));
 }
 if ($data = $mform->get_data()) {
     $text = (string)($data->emaillist ?? '');
