@@ -209,4 +209,28 @@ class enrol_preenrol_plugin extends enrol_plugin {
         }
         return $icons;
     }
+
+    /**
+     * Does this plugin allow manual unenrolment of all users?
+     * All plugins allowing this must implement 'enrol/preenrol:unenrol' capability.
+     *
+     * @param stdClass $instance course enrol instance
+     * @return bool - true means user with 'enrol/preenrol:unenrol' may unenrol others freely, false means nobody may touch user_enrolments
+     */
+    public function allow_unenrol(stdClass $instance) {
+        // Users with unenrol cap may unenrol other users manually.
+        return true;
+    }
+
+    /**
+     * Does this plugin allow manual changes in user_enrolments table?
+     * All plugins allowing this must implement 'enrol/preenrol:manage' capability.
+     *
+     * @param stdClass $instance course enrol instance
+     * @return bool - true means it is possible to change enrol period and status in user_enrolments table
+     */
+    public function allow_manage(stdClass $instance) {
+        // Users with manage cap may tweak period and status.
+        return true;
+    }
 }

@@ -46,4 +46,24 @@ $capabilities = array(
         ),
     ),
 
+    'enrol/preenrol:manage' => array(
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_COURSE,
+        'archetypes' => array(
+            'manager' => CAP_ALLOW,
+            'editingteacher' => CAP_ALLOW,
+        ),
+        'clonepermissionsfrom' => 'enrol/manual:manage',
+    ),
+
+    'enrol/preenrol:unenrol' => array(
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_COURSE,
+        'archetypes' => array(
+            'manager' => CAP_ALLOW,
+            'editingteacher' => CAP_ALLOW,
+        ),
+        'clonepermissionsfrom' => 'enrol/manual:unenrol',
+    ),
+
 );
