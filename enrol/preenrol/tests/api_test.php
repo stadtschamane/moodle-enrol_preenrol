@@ -67,7 +67,8 @@ final class api_test extends advanced_testcase {
             $info = get_capability_info($capname);
             $this->assertNotNull($info, "Capability $capname must be defined");
             $this->assertSame('write', $info->captype);
-            $this->assertSame(CONTEXT_COURSE, $info->contextlevel);
+            // Moodle DML returns scalars from the DB as strings; compare numerically.
+            $this->assertSame(CONTEXT_COURSE, (int)$info->contextlevel);
         }
     }
 }
