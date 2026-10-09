@@ -136,7 +136,7 @@ class importer {
      * @param string $text Raw token list.
      * @return string[] Normalised, non-empty tokens in input order.
      */
-    protected static function parse(string $text): array {
+    public static function parse(string $text): array {
         $tokens = preg_split('/[\r\n;\t,]/', $text);
         if ($tokens === false) {
             return [];
